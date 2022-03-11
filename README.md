@@ -1,6 +1,6 @@
 # observable
 ## ТЗ
-### Разработать аналог javascript класса Observable
+### Разработать аналог JavaScript класса Observable на С++
 
 Должен присутствовать основной механизм оповещение и подписок:
 
@@ -13,21 +13,22 @@
  7) Не копируемый ()
 
 ### Почитать
-C++: Логика подписки/нотификации реализованна в boost::signal2::signal; 
-C++: Асинхронная очередь в boost::asio::io_context; 
-C++: Лямбда-выражения
-C++: Паттерн банды четырех (Observable)
-C++: Некопируемые объекты - boost::noncopyable
-С++: Умные указатели - std::shared_ptr | std::unique_ptr
-C++: this как умный указатель - std::enable_shared_from_this
-C++: функции как объекты или переменные std::function
+
+ - C++: Логика подписки/нотификации реализованна в boost::signal2::signal; 
+ - C++: Асинхронная очередь в boost::asio::io_context; 
+ - C++: Лямбда-выражения
+ - C++: Паттерн банды четырех (Observable)
+ - C++: Некопируемые объекты - boost::noncopyable
+ - С++: Умные указатели - std::shared_ptr | std::unique_ptr
+ - C++: this как умный указатель - std::enable_shared_from_this
+ - C++: функции как объекты или переменные std::function
 
 ## Пример использования
 
 Предположим что у нас есть функция send которая работает асинхронно и результат выполнения будет известен в будущем. Эта функция возвращет Observable что позволит подписаться на результат и предпринять действия связанные с ним (не важно какие, главное возможность подписки).
 пример на псевдокоде
 
-Уровень 1 Junior | Pre-Midle
+Уровень 1: Junior | Pre-Midle
 ```Pseudo
 send("Hello")->subscribe([](std::size_t sent_bytes){
     if (sent_bytes == 77) {
@@ -35,7 +36,7 @@ send("Hello")->subscribe([](std::size_t sent_bytes){
     }
 });
 ```
-Уровень 2 Midle | Pre-Sinior
+Уровень 2: Midle | Pre-Sinior
 ```Pseudo
 send("Hello")->subscribe([](std::size_t sent_bytes){
     if (sent_bytes == 77) {
@@ -44,7 +45,7 @@ send("Hello")->subscribe([](std::size_t sent_bytes){
 })->wait(); // Подписываемся и ожидаем пока не произайдет нотификация внутри функции send (пока не получим результат в одну из лямбд)
 ```
 
-Уровень 3  Siniorito :)
+Уровень 3: Siniorito :)
 ```Pseudo
 send("Hello")->subscribe([](std::size_t sent_bytes){
     if (sent_bytes == 77) {
@@ -54,8 +55,6 @@ send("Hello")->subscribe([](std::size_t sent_bytes){
     std::cerr << "Fail send hello: " << error;
 })->wait();
 ```
-
-
 
 ## Советую
 Как лучше дествовать при разработки
@@ -83,4 +82,5 @@ send("Hello")->subscribe([](std::size_t sent_bytes){
  
  10) Разобраться с std::variant
  11) Внедрить вариативную подписку и нотификациюо
- 12) Сделать проверку типов 
+ 12) Сделать проверку типов
+ 13) Сделать удобочитаемые шаблонные параметры
